@@ -187,7 +187,7 @@ class _InputFieldState extends State<_InputField> {
               inputFormatters: widget.onlyNumbers ? [FilteringTextInputFormatter.digitsOnly] : null,
               decoration: InputDecoration(
                 hintText: widget.hintText,
-                hintStyle: JuiTheme.textStyles.itemHint,
+                hintStyle:  widget.contentStyle ?? JuiTheme.textStyles.itemHint,
                 isCollapsed: true,
                 counterText: '',
                 border: InputBorder.none,
@@ -199,7 +199,7 @@ class _InputFieldState extends State<_InputField> {
               alignment: Alignment.centerLeft,
               child: Text(
                 _breakWord(widget.controller.text.isEmpty ? widget.hintText : widget.controller.text),
-                style: widget.controller.text.isEmpty ? JuiTheme.textStyles.itemHint : JuiTheme.textStyles.itemContent,
+                style: widget.contentStyle ?? (widget.controller.text.isEmpty ? JuiTheme.textStyles.itemHint : JuiTheme.textStyles.itemContent),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
