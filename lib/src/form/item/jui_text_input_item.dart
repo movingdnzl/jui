@@ -55,6 +55,7 @@ class JuiTextInputItem extends StatelessWidget {
         onEditingComplete: onEditingComplete,
         onSubmitted: onSubmitted,
         showClearButton: showClearButton,
+        contentStyle: config.customContentStyle,
       ),
       config: config,
     );
@@ -73,7 +74,7 @@ class _InputField extends StatefulWidget {
   final VoidCallback? onEditingComplete;
   final ValueChanged<String>? onSubmitted;
   final bool showClearButton;
-
+  final TextStyle? contentStyle;
   const _InputField({
     Key? key,
     required this.hintText,
@@ -87,6 +88,7 @@ class _InputField extends StatefulWidget {
     this.onEditingComplete,
     this.onSubmitted,
     required this.showClearButton,
+    this.contentStyle
   }) : super(key: key);
 
   @override
@@ -181,7 +183,7 @@ class _InputFieldState extends State<_InputField> {
                 });
                 widget.onSubmitted?.call(value);
               },
-              style: JuiTheme.textStyles.itemContent,
+              style: widget.contentStyle ?? JuiTheme.textStyles.itemContent,
               inputFormatters: widget.onlyNumbers ? [FilteringTextInputFormatter.digitsOnly] : null,
               decoration: InputDecoration(
                 hintText: widget.hintText,

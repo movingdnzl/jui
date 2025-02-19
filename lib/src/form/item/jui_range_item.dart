@@ -60,7 +60,7 @@ class JuiRangeItem extends StatelessWidget {
         Expanded(
           child: Text(
             maxValue ?? maxHintText,
-            style: maxValue != null ? JuiTheme.textStyles.itemContent : _getHintStyle(),
+            style: config.customContentStyle ?? (maxValue != null ? JuiTheme.textStyles.itemContent : _getHintStyle()),
           ),
         ),
       ],

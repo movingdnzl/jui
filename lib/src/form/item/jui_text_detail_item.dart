@@ -40,7 +40,7 @@ class JuiTextDetailItem extends StatelessWidget {
       title: title,
       content: Text(
         contentText,
-        style: JuiTheme.textStyles.itemContent,
+        style: config.customContentStyle ?? JuiTheme.textStyles.itemContent,
         maxLines: maxLines,
         overflow: overflow,
         textAlign: textAlign,

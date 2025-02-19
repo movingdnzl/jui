@@ -52,7 +52,7 @@ class JuiTapItem extends StatelessWidget {
         Expanded(
           child: Text(
             contentText.isEmpty ? hintText : contentText,
-            style: _getTextStyle(),
+            style: config.customContentStyle ?? _getTextStyle(),
             maxLines: maxLines,
             overflow: TextOverflow.ellipsis,
           ),

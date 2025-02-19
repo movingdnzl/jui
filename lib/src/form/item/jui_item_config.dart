@@ -19,6 +19,9 @@ class JuiItemConfig {
   // 自定义标题样式
   final TextStyle? customTitleStyle;
 
+  // 自定义内容样式
+  final TextStyle? customContentStyle;
+
   // 是否显示分隔线
   final bool showDivider;
 
@@ -49,6 +52,7 @@ class JuiItemConfig {
       this.titleBeforeRequiredWidget,
       this.requiredMarker,
       this.customTitleStyle,
+      this.customContentStyle,
       this.showDivider = true,
       this.padding,
       this.dividerPadding,
