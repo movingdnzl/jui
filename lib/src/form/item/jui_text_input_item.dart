@@ -56,6 +56,7 @@ class JuiTextInputItem extends StatelessWidget {
         onSubmitted: onSubmitted,
         showClearButton: showClearButton,
         contentStyle: config.customContentStyle,
+        tipsStyle: config.customTipsTextStyle,
       ),
       config: config,
     );
@@ -75,6 +76,7 @@ class _InputField extends StatefulWidget {
   final ValueChanged<String>? onSubmitted;
   final bool showClearButton;
   final TextStyle? contentStyle;
+  final TextStyle? tipsStyle;
   const _InputField({
     Key? key,
     required this.hintText,
@@ -88,7 +90,8 @@ class _InputField extends StatefulWidget {
     this.onEditingComplete,
     this.onSubmitted,
     required this.showClearButton,
-    this.contentStyle
+    this.contentStyle,
+    this.tipsStyle
   }) : super(key: key);
 
   @override
@@ -187,7 +190,7 @@ class _InputFieldState extends State<_InputField> {
               inputFormatters: widget.onlyNumbers ? [FilteringTextInputFormatter.digitsOnly] : null,
               decoration: InputDecoration(
                 hintText: widget.hintText,
-                hintStyle:  widget.contentStyle ?? JuiTheme.textStyles.itemHint,
+                hintStyle:  widget.tipsStyle ?? JuiTheme.textStyles.itemHint,
                 isCollapsed: true,
                 counterText: '',
                 border: InputBorder.none,
@@ -199,7 +202,7 @@ class _InputFieldState extends State<_InputField> {
               alignment: Alignment.centerLeft,
               child: Text(
                 _breakWord(widget.controller.text.isEmpty ? widget.hintText : widget.controller.text),
-                style: widget.contentStyle ?? (widget.controller.text.isEmpty ? JuiTheme.textStyles.itemHint : JuiTheme.textStyles.itemContent),
+                style: _getTextStyleForConfig(),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -215,5 +218,21 @@ class _InputFieldState extends State<_InputField> {
         ],
       ),
     );
+  }
+
+  ///根据配置展示文本样式
+  TextStyle _getTextStyleForConfig() {
+    if(widget.controller.text.isEmpty) {
+      if(widget.tipsStyle != null) {
+        return widget.tipsStyle!;
+      } else {
+        return JuiTheme.textStyles.itemHint;
+      }
+    } else {
+      if(widget.contentStyle != null) {
+        return widget.contentStyle!;
+      }
+    }
+    return JuiTheme.textStyles.itemContent;
   }
 }

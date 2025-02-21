@@ -53,14 +53,14 @@ class JuiRangeItem extends StatelessWidget {
         Expanded(
           child: Text(
             minValue ?? minHintText,
-            style: minValue != null ? JuiTheme.textStyles.itemContent : _getHintStyle(),
+            style: _getMinValueTextStyleForConfig(),
           ),
         ),
         separator ?? _defaultSeparator(),
         Expanded(
           child: Text(
             maxValue ?? maxHintText,
-            style: config.customContentStyle ?? (maxValue != null ? JuiTheme.textStyles.itemContent : _getHintStyle()),
+            style: _getMaxValueTextStyleForConfig(),
           ),
         ),
       ],
@@ -77,6 +77,38 @@ class JuiRangeItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(1),
       ),
     );
+  }
+
+  ///根据配置展示最小值文本样式
+  TextStyle _getMinValueTextStyleForConfig() {
+    if(minValue != null) {
+      if(config.customContentStyle != null) {
+        return config.customContentStyle!;
+      } else {
+        return JuiTheme.textStyles.itemContent;
+      }
+    } else {
+      if(config.customTipsTextStyle != null) {
+        return config.customTipsTextStyle!;
+      }
+    }
+    return _getHintStyle();
+  }
+
+  ///根据配置展示最大值文本样式
+  TextStyle _getMaxValueTextStyleForConfig() {
+    if(maxValue != null) {
+      if(config.customContentStyle != null) {
+        return config.customContentStyle!;
+      } else {
+        return JuiTheme.textStyles.itemContent;
+      }
+    } else {
+      if(config.customTipsTextStyle != null) {
+        return config.customTipsTextStyle!;
+      }
+    }
+    return _getHintStyle();
   }
 
   TextStyle _getHintStyle() {

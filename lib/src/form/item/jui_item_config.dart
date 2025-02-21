@@ -22,6 +22,9 @@ class JuiItemConfig {
   // 自定义内容样式
   final TextStyle? customContentStyle;
 
+  // 自定义Tips样式
+  final TextStyle? customTipsTextStyle;
+
   // 是否显示分隔线
   final bool showDivider;
 
@@ -53,6 +56,7 @@ class JuiItemConfig {
       this.requiredMarker,
       this.customTitleStyle,
       this.customContentStyle,
+      this.customTipsTextStyle,
       this.showDivider = true,
       this.padding,
       this.dividerPadding,

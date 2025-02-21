@@ -52,7 +52,7 @@ class JuiTapItem extends StatelessWidget {
         Expanded(
           child: Text(
             contentText.isEmpty ? hintText : contentText,
-            style: config.customContentStyle ?? _getTextStyle(),
+            style: _getTextStyleForConfig(),
             maxLines: maxLines,
             overflow: TextOverflow.ellipsis,
           ),
@@ -64,6 +64,20 @@ class JuiTapItem extends StatelessWidget {
             )
       ],
     );
+  }
+
+  ///根据配置展示文本样式
+  TextStyle _getTextStyleForConfig() {
+    if(contentText.isEmpty) {
+      if(config.customTipsTextStyle != null) {
+        return config.customTipsTextStyle!;
+      }
+    } else {
+      if(config.customContentStyle != null) {
+        return config.customContentStyle!;
+      }
+    }
+    return _getTextStyle();
   }
 
   TextStyle _getTextStyle() {
