@@ -29,9 +29,9 @@ class UIScreenUtil {
   }
 
   /// 更新的designSize
-  static void updateDesignSize(Size size) {
-    _designWidth = size.width;
-    _designHeight = size.height;
+  static void updateDesignSize(Size designSize) {
+    _designWidth = designSize.width;
+    _designHeight = designSize.height;
   }
   /// 获取屏幕宽度
   static double get screenWidth {
