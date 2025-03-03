@@ -9,8 +9,8 @@ class UIScreenUtil {
   static double? _bottomBarHeight;
 
   // 设计稿尺寸
-  static const double _designWidth = 375;
-  static const double _designHeight = 812;
+  static double? _designWidth;
+  static double? _designHeight;
 
   static void _initIfNeeded() {
     if (_screenWidth == null) {
@@ -28,6 +28,11 @@ class UIScreenUtil {
     }
   }
 
+  /// 更新的designSize
+  static void updateDesignSize(Size size) {
+    _designWidth = size.width;
+    _designHeight = size.height;
+  }
   /// 获取屏幕宽度
   static double get screenWidth {
     _initIfNeeded();
@@ -61,19 +66,20 @@ class UIScreenUtil {
   /// 获取实际宽度
   static double setWidth(num width) {
     _initIfNeeded();
-    return width * screenWidth / _designWidth;
+    return width * screenWidth / (_designWidth ?? 375);
   }
 
   /// 获取实际高度
   static double setHeight(num height) {
     _initIfNeeded();
-    return height * screenHeight / _designHeight;
+
+    return height * screenHeight / (_designHeight ?? 812);
   }
 
   /// 获取字体大小
   static double setSp(num fontSize) {
     _initIfNeeded();
-    return fontSize * screenWidth / _designWidth;
+    return fontSize * screenWidth / (_designWidth ?? 375);
   }
 
   /// 获取宽度百分比
